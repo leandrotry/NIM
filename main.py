@@ -56,6 +56,7 @@ def partida():
 
     if n % m+1 == 0:
         print('Jogador Inicia')
+        vez
     else:
         print('Computador inicia') 
         vez_do_pc = True
@@ -111,5 +112,5 @@ def inicio():
 
 inicio()
 
-"""teste = usuario_escolhe_jogada(3, 5)
-print(teste)"""
+
+
