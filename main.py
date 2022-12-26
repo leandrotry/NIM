@@ -49,8 +49,11 @@ def partida():
             print('selecionado tipo inválido')
         if n > m:
             break
-        else:
+        elif n < m:
+            print('ERRO!')
+            print('Quantidade de peças inválidas. A quantidade de peças não pode ser menor que o limite de peças por jogada.')
             continue
+
     if n % (m + 1) == 0:
         print('Jogador Inicia')
         computador_escolhe_jogada(n, m)
@@ -89,20 +92,20 @@ def partida():
                 print()
 
     print('Fim do jogo! O computador ganhou!')
-def inicio():
-    print('Bem-vindo ao jogo do NIM! Escolha:')
+
+print('Bem-vindo ao jogo do NIM! Escolha:')
+print()
+
+print('1 - para jogar uma partida isolada')
+
+tipoDePartida = int(input('2 - para jogar um campeonato '))
+
+if tipoDePartida == 2:
     print()
-
-    print('1 - para jogar uma partida isolada')
-
-    tipoDePartida = int(input('2 - para jogar um campeonato '))
-
-    if tipoDePartida == 2:
-        print()
-        print('Voce escolheu um campeonato!')
-        print()
-        campeonato()
-    elif tipoDePartida == 1:
-        print()
-        partida()
+    print('Voce escolheu um campeonato!')
+    print()
+    campeonato()
+elif tipoDePartida == 1:
+    print()
+    partida()
 #----------------------------------------------------------------------------------#
