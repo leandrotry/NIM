@@ -10,7 +10,10 @@ def computador_escolhe_jogada(n, m):  #FUNÇÃO QUE EXECUTA AS JOGADAS DO COMPUT
     return computador_retira
 
 
-def jogador_escolhe_jogada(n, m):
+#----------------------------------------------------------------------------------#
+
+
+def usuario_escolhe_jogada(n, m):
     while True:
         jogador_remove_peca = int(input('Quantas peças você vai retirar?'))
         if jogador_remove_peca > m or jogador_remove_peca < 1:
@@ -21,16 +24,23 @@ def jogador_escolhe_jogada(n, m):
     return jogador_remove_peca
 
 
+#----------------------------------------------------------------------------------#
+
+
 def campeonato():
     rodada = 1
     while rodada <= 3:
         print(f'Rodada: {rodada}')
+        partida()
         rodada +=1
-    
+        
+    print("Placar: Você 0 X 3 Computador")
 
 
+#----------------------------------------------------------------------------------#
 
-def partida():  
+def partida(): 
+    vez_do_pc = False
     while True:
         try:        
             n = int(input('Digite a quantidade de peças'))
@@ -41,15 +51,58 @@ def partida():
             break
         else:
             continue
-    escolhe_primeiro_jogador(n, m)
-
-def escolhe_primeiro_jogador(n, m): 
     if n % (m + 1) == 0:
         print('Jogador Inicia')
-        computador_escolhe_jogada(n,m)
+        computador_escolhe_jogada(n, m)
     else:
-        print('Computador inicia')
+        print('Computador inicia') 
+        vez_do_pc = True
 
 
+    while n > 0:
+        if vez_do_pc:
+            pc_remove = computador_escolhe_jogada(n, m)
+            n = n - pc_remove
+            
+            if pc_remove == 1:
+                print('O computador retirou uma peça')
+                print()
+            else:
+                print(f'O computador retirou {pc_remove}')
+            vez_do_pc = False
+        
+        else:
+            jogador_remove = usuario_escolhe_jogada(n, m) 
+            n = n - jogador_remove
+            if jogador_remove == 1:
+                print('Você tirou 1 peça')
+            else:
+                print(f'Você tirou {jogador_remove}')
+            vez_do_pc = True
+        
+        if n == 1:
+            print('Agora resta apenas uma peça no tabuleiro.')
+            print()
+        else:
+            if n != 0:
+                print('Agora restam,', n, 'peças no tabuleiro.')
+                print()
 
-partida()
+    print('Fim do jogo! O computador ganhou!')
+def inicio():
+    print('Bem-vindo ao jogo do NIM! Escolha:')
+    print()
+
+    print('1 - para jogar uma partida isolada')
+
+    tipoDePartida = int(input('2 - para jogar um campeonato '))
+
+    if tipoDePartida == 2:
+        print()
+        print('Voce escolheu um campeonato!')
+        print()
+        campeonato()
+    elif tipoDePartida == 1:
+        print()
+        partida()
+#----------------------------------------------------------------------------------#
