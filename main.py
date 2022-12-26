@@ -47,16 +47,15 @@ def partida():
             m = int(input('Limite de peças por jogada'))
         except ValueError:
             print('selecionado tipo inválido')
-        if n > m:
+        if n >= m:
             break
         elif n < m:
             print('ERRO!')
             print('Quantidade de peças inválidas. A quantidade de peças não pode ser menor que o limite de peças por jogada.')
             continue
 
-    if n % (m + 1) == 0:
+    if n == (n % m+1 == 0):
         print('Jogador Inicia')
-        computador_escolhe_jogada(n, m)
     else:
         print('Computador inicia') 
         vez_do_pc = True
